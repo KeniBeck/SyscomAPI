@@ -16,6 +16,11 @@ export class ProductosController {
   findAll() {
     return this.productosService.findAll();
   }
+  @Get(':id')
+  finOneDB(@Param('id') id: string) {
+    return this.productosService.findOneDB(id);
+  }
+
 
   @Get('syscom/:id')
   findOne(@Param('id') id: string) {

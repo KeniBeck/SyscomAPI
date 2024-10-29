@@ -67,7 +67,19 @@ export class ProductosService {
       throw new InternalServerErrorException('Could not fetch products');
     }
   }
-
+  async findOneDB(id: string) {
+    try {
+      const products = await this.prisma.productos.findMany({
+        where: {
+          id_categoria: id
+        }
+      });
+      return products;
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      throw new InternalServerErrorException('Could not fetch products');
+  }
+  }
   async findOne(category_id: string) {
     try {
       const productos = await this.getAllProductsByCategory(category_id);

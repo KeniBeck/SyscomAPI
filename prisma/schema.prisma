@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -20,10 +14,61 @@ model categorias {
   productos productos[] 
 }
 
-model productos{
+model productos {
   id String @id
   name String
   stock Int
   id_categoria String
   categorias categorias @relation(fields: [id_categoria], references: [id])
+  detalle_producto DetalleProducto[]
+}
+
+model DetalleProducto {
+  id String @id
+  id_producto String
+  productos productos @relation(fields: [id_producto], references: [id])
+  modelo String?
+  marca String?
+  sat_key String?
+  img_portada String?
+  link_privado String?
+  pvol Float?
+  marca_logo String?
+  link String?
+  descripcion String?
+  peso Float?
+  alto Float?
+  largo Float?
+  ancho Float?
+  unidad_de_medida String?
+  precio_1 Float?
+  precio_especial Float?
+  precio_descuento Float?
+  precio_lista Float?
+  caracteristicas Caracteristica[]
+  imagenes Imagen[]
+  recursos Recurso[]
+}
+
+model Caracteristica {
+  id String @id @default(cuid())
+  id_detalle String
+  detalle_producto DetalleProducto @relation(fields: [id_detalle], references: [id])
+  descripcion String
+}
+
+model Imagen {
+  id String @id @default(cuid())
+  id_detalle String
+  detalle_producto DetalleProducto @relation(fields: [id_detalle], references: [id])
+  url String
+  orden Int
+}
+
+model Recurso {
+  id String @id @default(cuid())
+  id_detalle String
+  detalle_producto DetalleProducto @relation(fields: [id_detalle], references: [id])
+  descripcion String
+  path String
 }
