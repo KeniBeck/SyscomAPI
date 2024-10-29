@@ -7,9 +7,9 @@ import { UpdateProductoDto } from './dto/update-producto.dto';
 export class ProductosController {
   constructor(private readonly productosService: ProductosService) {}
 
-  @Post()
-  create(@Body() createProductoDto: CreateProductoDto) {
-    return this.productosService.create(createProductoDto);
+  @Post(':id')
+  create(@Param('id') id: string) {
+    return this.productosService.create(id);
   }
 
   @Get()
@@ -17,9 +17,9 @@ export class ProductosController {
     return this.productosService.findAll();
   }
 
-  @Get(':id')
+  @Get('syscom/:id')
   findOne(@Param('id') id: string) {
-    return this.productosService.findOne(+id);
+    return this.productosService.findOne(id);
   }
 
   @Patch(':id')

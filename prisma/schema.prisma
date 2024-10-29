@@ -17,10 +17,13 @@ model categorias {
   id String @id
   nombre String
   nivel Int
+  productos productos[] 
 }
 
 model productos{
   id String @id
   name String
   stock Int
+  id_categoria String
+  categorias categorias @relation(fields: [id_categoria], references: [id])
 }

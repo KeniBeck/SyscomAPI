@@ -54,7 +54,7 @@ export class CategoriasService {
     });
     return result;
   }
-
+  
   update(id: number, updateCategoriaDto: UpdateCategoriaDto) {
     return `This action updates a #${id} categoria`;
   }
