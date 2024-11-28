@@ -7,9 +7,9 @@ import { UpdateDetalleProductoDto } from './dto/update-detalle-producto.dto';
 export class DetalleProductoController {
   constructor(private readonly detalleProductoService: DetalleProductoService) {}
 
-  @Post()
-  create(@Body() createDetalleProductoDto: CreateDetalleProductoDto) {
-    return this.detalleProductoService.create(createDetalleProductoDto);
+  @Post(':id')
+  create(@Param('id') id: string) {
+    return this.detalleProductoService.create(id);
   }
 
   @Get()
